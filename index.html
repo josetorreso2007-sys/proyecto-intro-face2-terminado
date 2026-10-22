@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BinaryShop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>BinaryShop 🛒</h1>
+        <div id="info-usuario"></div>
+    </header>
+
+    <main>
+        <section id="seccion-login" class="contenedor-card">
+            <h2 id="titulo-login-card">Iniciar sesión</h2>
+            
+            <div class="campo">
+                <label for="rol-select">Rol:</label>
+                <select id="rol-select" onchange="mostrarFormularioLogin()">
+                    <option value="" disabled selected>-- Elige --</option>
+                    <option value="comprador">Comprador</option>
+                    <option value="vendedor">Vendedor</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <form id="formulario-login" style="display: none;" onsubmit="iniciarSesion(event)">
+                <div class="campo">
+                    <label for="nickname">Usuario:</label>
+                    <input type="text" id="nickname" required placeholder="ej: admin">
+                </div>
+
+                <div class="campo">
+                    <label for="password">Clave:</label>
+                    <input type="password" id="password" required placeholder="ej: 123">
+                </div>
+
+                <button type="submit" class="btn-accion">Entrar</button>
+            </form>
+
+            <div id="contenedor-registro" style="display: none; margin-top: 15px;">
+                <button type="button" onclick="toggleRegistro()" class="btn-secundario" style="width: 100%;">Crear cuenta</button>
+            </div>
+
+            <form id="formulario-registro" style="display: none; margin-top: 15px;" onsubmit="registrarUsuario(event)">
+                <div class="campo">
+                    <label for="reg-nombre">Nombre:</label>
+                    <input type="text" id="reg-nombre" required placeholder="Nombre">
+                </div>
+                <div class="campo">
+                    <label for="reg-nickname">Usuario:</label>
+                    <input type="text" id="reg-nickname" required placeholder="Usuario">
+                </div>
+                <div class="campo">
+                    <label for="reg-password">Clave:</label>
+                    <input type="password" id="reg-password" required placeholder="Clave">
+                </div>
+                <div class="campo">
+                    <label for="reg-rol">Rol:</label>
+                    <select id="reg-rol" required style="width: 100%; padding: 7px; border-radius: 6px; border: 1px solid #93c5fd;">
+                        <option value="comprador">Comprador</option>
+                        <option value="vendedor">Vendedor</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-accion" style="margin-top: 10px;">Guardar</button>
+            </form>
+
+            <p id="mensaje-error" class="error"></p>
+        </section>
+
+        <section id="seccion-principal" style="display: none;">
+            <div id="contenido-rol"></div>
+        </section>
+    </main>
+
+    <!-- Modal / Menú central para mensaje de compra exitosa -->
+    <div id="modal-compra" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 30px; border-radius: 10px; text-align: center; max-width: 350px; width: 90%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <h2 style="color: #1e3a8a; margin-top: 0;">¡Compra exitosa! 🎉</h2>
+            <p id="modal-texto-detalle" style="margin: 15px 0; color: #475569;"></p>
+            <button onclick="cerrarModalCompra()" class="btn-accion" style="margin-top: 10px;">Aceptar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
